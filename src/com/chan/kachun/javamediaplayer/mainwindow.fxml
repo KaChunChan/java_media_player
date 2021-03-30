@@ -1,8 +1,32 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="com.chan.kachun.javamediaplayer.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<BorderPane fx:controller="com.chan.kachun.javamediaplayer.Controller"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="borderPane">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="Open..." onAction="#handleOpenDirectory"/>
+                    </items>
+                </Menu>
+            </MenuBar>
+        </VBox>
+    </top>
+    <center>
+        <ListView fx:id="listOfSongView">
+        </ListView>
+    </center>
+    <bottom>
+        <HBox>
+            <Label fx:id="selectedSongName" text="Not Selected Yet"></Label>
+        </HBox>
+    </bottom>
+</BorderPane>
