@@ -1,4 +1,7 @@
-package com.chan.kachun.javamediaplayer;
+package com.kachunchan.javamediaplayer;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -8,7 +11,9 @@ public class ContentPlayer {
 
     private static ContentPlayer contentPlayer;
     private final ArrayList<MediaFile> loadedMedias;
-    private MediaFile selectedSong;
+    private static MediaPlayer mediaPlayer;
+    private static MediaFile selectedMedia;
+    private static Media media;
 
 
     private ContentPlayer() {
@@ -48,9 +53,27 @@ public class ContentPlayer {
     }
 
     public void setSelectedSong(MediaFile mediaFile) {
-        this.selectedSong = mediaFile;
+        this.selectedMedia = mediaFile;
     }
 
-    
+    public void playMedia() {
+        if (selectedMedia == null) return;
+        if (!selectedMedia.getURI().equals(media)) {
+            media = new Media(selectedMedia.getURI());
+        }
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
+
+    public void pauseMedia() {
+        if (selectedMedia == null) return;
+        mediaPlayer.pause();
+
+    }
+
+    public void stopMedia() {
+        if (selectedMedia == null) return;
+        mediaPlayer.stop();
+    }
 
 }

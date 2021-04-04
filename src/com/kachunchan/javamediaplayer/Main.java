@@ -1,4 +1,4 @@
-package com.chan.kachun.javamediaplayer;
+package com.kachunchan.javamediaplayer;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

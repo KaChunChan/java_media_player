@@ -1,4 +1,4 @@
-package com.chan.kachun.javamediaplayer;
+package com.kachunchan.javamediaplayer;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,6 +12,7 @@ import java.io.File;
 
 public class Controller {
     private File loadedSong;
+//    private MediaPlayer mediaPlayer;
 
     @FXML
     private BorderPane borderPane;
@@ -27,7 +28,7 @@ public class Controller {
                 if(newValue != null) {
                     MediaFile mediaFile = listOfSongView.getSelectionModel().getSelectedItem();
                     selectedSongName.setText(mediaFile.toString());
-
+                    ContentPlayer.getInstance().setSelectedSong(mediaFile);
                 }
             }
         });
@@ -47,6 +48,16 @@ public class Controller {
         }
     }
 
+    public void play() {
+        ContentPlayer.getInstance().playMedia();
+    }
 
+    public void pause() {
+        ContentPlayer.getInstance().pauseMedia();
+    }
+
+    public void stop() {
+        ContentPlayer.getInstance().stopMedia();
+    }
 
 }

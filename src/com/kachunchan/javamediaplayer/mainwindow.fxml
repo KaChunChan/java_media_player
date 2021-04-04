@@ -6,7 +6,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
-<BorderPane fx:controller="com.chan.kachun.javamediaplayer.Controller"
+<?import javafx.scene.control.Button?>
+<BorderPane fx:controller="com.kachunchan.javamediaplayer.Controller"
             xmlns:fx="http://javafx.com/fxml"
             fx:id="borderPane">
     <top>
@@ -25,8 +26,13 @@
         </ListView>
     </center>
     <bottom>
-        <HBox>
+        <VBox>
+            <HBox fx:id="mediaControllerPanel">
+                <Button fx:id="playButton" text="PLAY" onMouseClicked="#play"/>
+                <Button fx:id="pauseButton" text="PAUSE" onMouseClicked="#pause"/>
+                <Button fx:id="stopButton" text="STOP" onMouseClicked="#stop"/>
+            </HBox>
             <Label fx:id="selectedSongName" text="Not Selected Yet"></Label>
-        </HBox>
+        </VBox>
     </bottom>
 </BorderPane>
