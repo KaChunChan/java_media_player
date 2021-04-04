@@ -1,0 +1,38 @@
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<BorderPane fx:controller="com.kachunchan.javamediaplayer.Controller"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="borderPane">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="Open..." onAction="#handleOpenDirectory"/>
+                    </items>
+                </Menu>
+            </MenuBar>
+        </VBox>
+    </top>
+    <center>
+        <ListView fx:id="listOfSongView">
+        </ListView>
+    </center>
+    <bottom>
+        <VBox>
+            <HBox fx:id="mediaControllerPanel">
+                <Button fx:id="playButton" text="PLAY" onMouseClicked="#play"/>
+                <Button fx:id="pauseButton" text="PAUSE" onMouseClicked="#pause"/>
+                <Button fx:id="stopButton" text="STOP" onMouseClicked="#stop"/>
+            </HBox>
+            <Label fx:id="selectedSongName" text="Not Selected Yet"></Label>
+        </VBox>
+    </bottom>
+</BorderPane>

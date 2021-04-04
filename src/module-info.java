@@ -3,6 +3,5 @@ module javamediaplayer {
     requires javafx.controls;
     requires javafx.media;
 
-    opens com.kachunchan.javamediaplayer.view;
-
+    opens com.kachunchan.javamediaplayer;
 }
