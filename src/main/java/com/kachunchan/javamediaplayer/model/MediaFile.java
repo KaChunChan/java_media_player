@@ -1,4 +1,4 @@
-package com.kachunchan.javamediaplayer;
+package com.kachunchan.javamediaplayer.model;
 
 import java.io.File;
 
@@ -11,10 +11,6 @@ public class MediaFile {
 
     public String toString() {
         return file.getName();
-    }
-
-    public String getPath() {
-        return file.getPath();
     }
 
     public String getURI() {

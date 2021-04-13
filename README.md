@@ -8,5 +8,5 @@ Build Environment
 Build Steps
 - Execute:
     mvn javafx:jlink
-- Built files can be located in ./target/JavaMediaPlayer (Alternatively ./target/JavaMediaPlayer.zip)
+- Built files are located in ./target/JavaMediaPlayer (Alternatively ./target/JavaMediaPlayer.zip)
 - Run ./target/JavaMediaPlayer/bin/JMP.bat
