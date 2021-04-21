@@ -1,42 +1,53 @@
 package com.kachunchan.javamediaplayer.model;
 
-import java.io.File;
-import java.io.FileFilter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+/*
+ * This class is used to load files from a selected directory if the files are supported, and stores the
+ * location of each file in a list. *
+ */
 public class MediaLibrary {
 
-    private final List<MediaFile> mediaFileList;
+    // The mediaLibrary field stores the list of files in a directory. Each time when a new path is given
+    // a new list is instantiated.
+    private List<Path> mediaLibrary;
 
     public MediaLibrary() {
-        this.mediaFileList = new ArrayList<>();
+        this.mediaLibrary = null;
     }
 
-    public void loadItemsToFileList(File path) {
-        loadItemsToFileList(path, "");
-    }
+    // The loadItemsToMediaLibrary uses a predicate to filter out the files that are not supported.
+    public void loadItemsToMediaLibrary(Path path, String[] suffixes) {
+        mediaLibrary = new ArrayList<>();
 
-    public void loadItemsToFileList(File path , String suffix) {
-        if (!path.isDirectory()) {
-            return;
-        }
-        mediaFileList.clear();
-        FileFilter mp3Filter = new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return (pathname.getPath().endsWith(suffix));
+        Predicate<Path> fileFilter = file -> {
+            for (String suffix : suffixes) {
+                if (file.getFileName().toString().endsWith(suffix)) {
+                    return true;
+                }
             }
+            return false;
         };
-        File[] files = path.listFiles(mp3Filter);
-        for (File file : files) {
-            if (file.isFile()) {
-                mediaFileList.add(new MediaFile(file));
-            }
+
+        try {
+            Stream<Path> files = Files.list(path);
+            mediaLibrary = files
+                    .filter(fileFilter)
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            System.out.println("Error loading files");
+            e.printStackTrace();
         }
     }
 
-    public List<MediaFile> getItemsFromFileList() {
-        return mediaFileList;
+    public List<Path> getMediaLibrary() {
+        return mediaLibrary;
     }
 }
